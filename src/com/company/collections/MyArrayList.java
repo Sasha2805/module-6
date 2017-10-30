@@ -5,7 +5,7 @@ public class MyArrayList<T> {
     private static final int CAPACITY = 10;     // Начальная емкость списка
     private static final int MULTIPLIER = 3;    // Множитель и делитель для измения
     private static final int DIVIDER = 2;       // размера списка
-    private int sizeOfCollection;               // Количество содержащихся обьектов списка
+    private int size;               // Количество содержащихся обьектов списка
     private Object[] arrayOfObjects;
 
     public MyArrayList(){
@@ -18,11 +18,11 @@ public class MyArrayList<T> {
 
     // Добавление элемета
     public void add(T object){
-        if (sizeOfCollection == arrayOfObjects.length){
+        if (size == arrayOfObjects.length){
             resize((arrayOfObjects.length * MULTIPLIER ) / DIVIDER);
-            arrayOfObjects[sizeOfCollection++] = object;
+            arrayOfObjects[size++] = object;
         } else {
-            arrayOfObjects[sizeOfCollection++] = object;
+            arrayOfObjects[size++] = object;
         }
     }
 
@@ -33,23 +33,23 @@ public class MyArrayList<T> {
         System.arraycopy(arrayOfObjects, 0, tempArray, 0, index);
         System.arraycopy(arrayOfObjects, index + 1, tempArray, index, tempArray.length - index);
         arrayOfObjects = tempArray;
-        sizeOfCollection--;
+        size--;
     }
 
     // Очистка списка
     public void clear(){
         arrayOfObjects = new Object[CAPACITY];
-        sizeOfCollection = 0;
+        size = 0;
     }
 
     public int size(){
-        return sizeOfCollection;
+        return size;
     }
 
     // Возвращаем обьект по индексу
     public Object get(int index){
-        if(index >= sizeOfCollection || index < 0) {
-            return "Неправильный индекс массива!";
+        if(index >= size || index < 0) {
+            return null;
         }
         return arrayOfObjects[index];
     }
@@ -60,4 +60,5 @@ public class MyArrayList<T> {
         System.arraycopy(arrayOfObjects, 0, tempArray, 0, arrayOfObjects.length);
         arrayOfObjects = tempArray;
     }
+
 }
